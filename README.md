@@ -50,3 +50,11 @@ lrwxrwxrwx 1 root root       4 Jan 24  2017 /bin/sh.distrib -> dash
 ```
 
 Note that as is common in Linux distributions, the original `sh` program is a link to a Posix compliant shell (in this case, Dash). Use the `heirloom-sh` program if you want the original `sh` experience.
+
+Note: to install heirloom-sh from the bz2 file without the other dependencies (e.g. in a separate Dockerfile build stage) bzip2 is also required:
+
+RUN apt-get update -y && \
+    apt-get install -y \
+    make \
+    gcc \
+    bzip2 \
