@@ -58,3 +58,9 @@ RUN apt-get update -y && \
     make \
     gcc \
     bzip2 \
+
+It's possible to also compile heirloom-sh on Alpine Linux (, e.g. by:
+    `RUN apk add --no-cache gcc make libc-dev`
+and perhaps
+    `RUN apk add --no-cache  gcompat libstdc++` ).
+However on running it a "no space" error may be encountered.
