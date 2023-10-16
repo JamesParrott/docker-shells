@@ -37,5 +37,10 @@ RUN chmod +x ./test.sh
 # Add the heirloom shell code, then compile it.
 COPY heirloom-sh-050706.tar.bz2 /tmp/heirloom-sh-050706.tar.bz2
 RUN tar -jxvf /tmp/heirloom-sh-050706.tar.bz2 -C /tmp/
+
+# Note, compilation of heirloom-sh requires header files, e.g. from libc-dev, that 
+# coincidentally are installed  by psmisc or one of the shells.  If you have removed 
+# psmisc or any of the shells and compilation shells, to get the headers back in, add:
+# RUN apt-get install -y libc-dev
 RUN cd /tmp/heirloom-sh-050706 && make
 RUN cp /tmp/heirloom-sh-050706/sh /bin/heirloom-sh
