@@ -28,14 +28,17 @@ RUN apt-get install -y \
     zsh \
     fish \
     ash \
-    dash
+    dash \
+    wget
 
 # Add the test script.
-COPY ./test/test.sh ./test.sh
-RUN chmod +x ./test.sh
+# COPY ./test/test.sh ./test.sh
+# RUN chmod +x ./test.sh
 
 # Add the heirloom shell code, then compile it.
-COPY heirloom-sh-050706.tar.bz2 /tmp/heirloom-sh-050706.tar.bz2
+# COPY heirloom-sh-050706.tar.bz2 /tmp/heirloom-sh-050706.tar.bz2
+WORKDIR /tmp
+RUN wget --progress=dot:giga http://downloads.sourceforge.net/heirloom/heirloom-sh-050706.tar.bz2
 RUN tar -jxvf /tmp/heirloom-sh-050706.tar.bz2 -C /tmp/
 RUN cd /tmp/heirloom-sh-050706 && make
 RUN cp /tmp/heirloom-sh-050706/sh /bin/heirloom-sh
